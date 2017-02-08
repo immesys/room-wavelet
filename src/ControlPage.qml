@@ -12,6 +12,7 @@ import BOSSWAVE 1.0
 Item {
     id : main
     property var dsource
+
     GridLayout {
       columnSpacing: 10
       rowSpacing: 10
@@ -36,6 +37,11 @@ Item {
         Text{
           text:"building ventilation"
         }
+        OnOffActuator {
+            uri: "ucberkeley/eop/showroom/arbiter/act/building_fan"
+            name: "Building Ventilation"
+            anchors.fill: parent
+        }
       }
       View {
         elevation: 1
@@ -43,6 +49,11 @@ Item {
         Layout.fillHeight: true
         Text{
           text:"building heat"
+        }
+        OnOffActuator {
+            uri: "ucberkeley/eop/showroom/arbiter/act/building_heat"
+            name: "Building Heat"
+            anchors.fill: parent
         }
       }
       View {
@@ -52,6 +63,11 @@ Item {
         Text{
           text:"building cooling"
         }
+        OnOffActuator {
+            uri: "ucberkeley/eop/showroom/arbiter/act/building_cool"
+            name: "Building Cooling"
+            anchors.fill: parent
+        }
       }
       View {
         elevation: 1
@@ -59,6 +75,11 @@ Item {
         Layout.fillHeight: true
         Text{
           text:"EV charging"
+        }
+        OnOffActuator {
+            uri: ""
+            name: "EV Charging"
+            anchors.fill: parent
         }
       }
       View {
@@ -68,6 +89,11 @@ Item {
         Text{
           text:"Desk fan"
         }
+        OnOffActuator {
+            uri: "ucberkeley/eop/plugctl/s.powerup.v0/1/i.binact/slot/state"
+            name: "Desk Fan"
+            anchors.fill: parent
+        }
       }
       View {
         elevation: 1
@@ -75,6 +101,11 @@ Item {
         Layout.fillHeight: true
         Text{
           text:"Desk heat"
+        }
+        OnOffActuator {
+            uri: "ucberkeley/eop/plugctl/s.powerup.v0/0/i.binact/slot/state"
+            name: "Desk Heat"
+            anchors.fill: parent
         }
       }
       View {
@@ -84,6 +115,11 @@ Item {
         Text{
           text:"Desk light"
         }
+        OnOffActuator {
+            uri: "ucberkeley/eop/plugctl/s.powerup.v0/2/i.binact/slot/state"
+            name: "Desk Light"
+            anchors.fill: parent
+        }
       }
       View {
         elevation: 1
@@ -91,6 +127,11 @@ Item {
         Layout.fillHeight: true
         Text{
           text:"Demand response"
+        }
+        OnOffActuator {
+            uri: "ucberkeley/eop/showroom/arbiter/act/demand_response"
+            name: "Demand Response"
+            anchors.fill: parent
         }
       }
     }
