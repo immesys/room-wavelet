@@ -24,10 +24,8 @@ Item {
         id:topgraph
         elevation: 1
         Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.preferredHeight: parent.height / 3
+        Layout.preferredHeight: parent.height / 2
         Layout.columnSpan: 4
-        Layout.rowSpan: 2
         Stream {
             id: s1
             dataDensity: false
