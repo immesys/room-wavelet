@@ -5,6 +5,20 @@ import BOSSWAVE 1.0
 Item {
     property string uri;
     property string name;
+
+    function publishByte(b) {
+        BW.publishText({
+            URI: uri,
+            AutoChain: true,
+            Payload: String.fromCharCode(b),
+            PONum: 16777472
+        }, function (err) {
+            if (err.length != 0) {
+                console.log("Error in publish: " + err);
+            }
+        })
+    }
+
     Button{
         text: name + " On"
         anchors.left: parent.left
@@ -12,18 +26,9 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.verticalCenter
 
-        onClicked: {
-            BW.publishText({
-                URI: uri,
-                AutoChain: true,
-                Payload: String.fromCharCode(1),
-                PONum: 16777472
-            }, function (err) {
-                if (err.length != 0) {
-                    console.log("Erorr in publish: " + err);
-                }
-            })
-        }
+        anchors.margins: 2
+
+        onClicked: publishByte(1)
     }
     Button{
         text: name + " Off"
@@ -32,17 +37,8 @@ Item {
         anchors.top: parent.verticalCenter
         anchors.bottom: parent.bottom
 
-        onClicked: {
-            BW.publishText({
-                URI: uri,
-                AutoChain: true,
-                Payload: String.fromCharCode(0),
-                PONum: 16777472
-            }, function (err) {
-                if (err.length != 0) {
-                    console.log("Error in publish: " + err);
-                }
-            })
-        }
+        anchors.margins: 2
+
+        onClicked: publishByte(0)
     }
 }

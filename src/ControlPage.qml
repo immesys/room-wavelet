@@ -25,18 +25,61 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
+        Layout.preferredHeight: parent.height / 3
         Layout.columnSpan: 4
-        Text {
-          text: "put the power consumption plot here"
+        Layout.rowSpan: 2
+        Stream {
+            id: s1
+            dataDensity: false
+            selected: false
+            alwaysConnect: false
+
+            color: "blue"
+            timeOffset: [0, 0]
+            archiver: "ucberkeley/s.giles/_/i.archiver"
+            uuid: "5e77668c-9938-340c-8d43-15d1b4b6e3e2"
+        }
+        MrPlotterLayouts.SmoothYAxis {
+            id: a1
+            dynamicAutoscale: true
+            name: "Power Consumption [W]"
+            domain: [-2, 2]
+            streamList: [s1]
+        }
+        RowLayout {
+            anchors.fill: parent
+            View {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                MrPlotterLayouts.BasicPlot {
+                    id: mrpbp
+                    timeDomain: [1415643674978, 1415643674979, 469055.0, 469060.0]
+                    timeZone: "America/Los_Angeles"
+                    timeTickPromotion: true
+                    axisList: [a1]
+                    streamList: [s1]
+                    scrollZoomable: true
+
+                    Component.onCompleted: {
+                        mrpbp.autozoom()
+                    }
+
+                    anchors.fill: parent
+                }
+            }
+            ColumnLayout {
+                Layout.preferredWidth: 100
+                Button {
+                    text: "See all Data"
+                    onClicked: mrpbp.autozoom()
+                }
+            }
         }
       }
       View {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"building ventilation"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/showroom/arbiter/act/building_fan"
             name: "Building Ventilation"
@@ -47,9 +90,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"building heat"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/showroom/arbiter/act/building_heat"
             name: "Building Heat"
@@ -60,9 +100,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"building cooling"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/showroom/arbiter/act/building_cool"
             name: "Building Cooling"
@@ -73,11 +110,8 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"EV charging"
-        }
         OnOffActuator {
-            uri: ""
+            uri: "ucberkeley/eop/showroom/arbiter/act/ev_charging"
             name: "EV Charging"
             anchors.fill: parent
         }
@@ -86,9 +120,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"Desk fan"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/plugctl/s.powerup.v0/1/i.binact/slot/state"
             name: "Desk Fan"
@@ -99,9 +130,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"Desk heat"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/plugctl/s.powerup.v0/0/i.binact/slot/state"
             name: "Desk Heat"
@@ -112,9 +140,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"Desk light"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/plugctl/s.powerup.v0/2/i.binact/slot/state"
             name: "Desk Light"
@@ -125,9 +150,6 @@ Item {
         elevation: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Text{
-          text:"Demand response"
-        }
         OnOffActuator {
             uri: "ucberkeley/eop/showroom/arbiter/act/demand_response"
             name: "Demand Response"

@@ -1,0 +1,3 @@
+[submodule "src/mr-plotter-layouts/mr-plotter-layouts"]
+	path = src//mr-plotter-layouts
+	url = git@github.com:SoftwareDefinedBuildings/mr-plotter-layouts
